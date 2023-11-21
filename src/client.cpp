@@ -9,14 +9,9 @@
 
 #include <string>
 #include <array>
-#include "include/constants.hpp"
 
-#define errchk(errcode, msg) \
-    if ((errcode) == -1)     \
-    {                        \
-        perror(msg);         \
-        exit(errno);         \
-    }
+#include "include/constants.hpp"
+#include "include/error.hpp"
 
 int main()
 {
@@ -44,10 +39,10 @@ int main()
         std::cout << "[DEBUG CLIENT] \'" << buffer.data() << "\'\n";
         
         // 3B. Write to server
-        write(sockfd, buffer.data(), buffer.length());
+        errchk( write(sockfd, buffer.data(), buffer.length()), "write");
 
         // 3C. Read from server
-        read(sockfd, buffer.data(), buffer.length());
+        errchk( read(sockfd, buffer.data(), buffer.length()), "read");
 
         std::cout << "[DEBUG SERVER] \'" << buffer.data() << "\'\n";
     }
