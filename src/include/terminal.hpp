@@ -5,9 +5,9 @@
 class Terminal
 {
     public:
-        Terminal();
+        Terminal(const std::string &channel_);
         ~Terminal();
 
     private:
-        //std::string channel;
+        std::string channel;
 };

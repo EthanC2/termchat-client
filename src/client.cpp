@@ -49,7 +49,7 @@ void write_server(int sockfd)
 
 int main()
 {
-    Terminal terminal;
+    Terminal terminal("default-room-name");
     sockaddr_in servaddr;
     int sockfd;
 
