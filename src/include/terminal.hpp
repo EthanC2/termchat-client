@@ -4,6 +4,8 @@
 
 #include <sys/ioctl.h>
 
+#include "window.hpp"
+
 class Terminal
 {
     public:
@@ -15,4 +17,5 @@ class Terminal
         std::string channel;
         unsigned short rows;
         unsigned short columns;
+        Window messages;
 };

@@ -11,12 +11,23 @@
 Terminal::Terminal(const std::string &channel_)
 {
     channel = channel_;
-    update_dimensions();
 
     // Initialize NCurses
     initscr();  // initialize ncurses screen
     raw();      // disable line buffering
     noecho();   // disable character echoing
+    
+    // Create windows
+    update_dimensions();
+
+    int height = 5;
+    int width = 20;
+    messages = Window(height, width, (rows - height)/2, (columns - width)/2);
+    messages.write("foobar!!");
+
+    #ifdef DEBUG
+    std::cout << "[DEBUG] Exited " << __FUNCTION__ << '\n';
+    #endif
 }
 
 Terminal::~Terminal()
@@ -35,6 +46,6 @@ void Terminal::update_dimensions()
     columns = dimensions.ws_col;
 
     #ifdef DEBUG
-    std::cout << "Updated window dimensions to " << rows << 'x' << columns << '\n';
+    std::cout << "Set window dimensions to " << rows << 'x' << columns << '\n';
     #endif
 }
