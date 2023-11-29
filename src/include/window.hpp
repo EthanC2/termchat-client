@@ -10,7 +10,10 @@ class Window
         ~Window();
         void write(const char *message);
         void read(char *buffer);
+        void setTop(const char *TopMessage);
 
     private:
-        WINDOW *window;
+        WINDOW *top;
+        WINDOW *body;
+        WINDOW *bottom;
 };
